@@ -20,7 +20,7 @@ def create_task(request):
             task = form.save()
             return redirect(reverse('task_list'))
         else:
-            return render(request, 'main_app/task-list.html', {'form' : form})
+            return render(request, 'main_app/create-task.html', {'form' : form})
     elif request.method == "GET":
         form = TaskForm()
-        return render(request, 'main_app/task-list.html', {'form' : form})
+        return render(request, 'main_app/create-task.html', {'form' : form})
