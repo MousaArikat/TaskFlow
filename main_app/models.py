@@ -11,3 +11,4 @@ class Tasks(models.Model):
     is_completed = models.BooleanField(default = False)
     date_created = models.DateTimeField()
     deadline = models.DateTimeField()
+

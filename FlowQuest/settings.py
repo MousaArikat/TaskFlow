@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'FlowQuest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'flowquest-db',
+        'NAME': 'taskflow_db',
         'USER' : 'postgres',
         'PASSWORD' : 'changeme',
         'PORT' : '5432',
