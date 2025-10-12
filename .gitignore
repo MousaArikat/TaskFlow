@@ -7,6 +7,7 @@ __pycache__/
 venv/
 .env/
 .venv/
+flowquest-venv/
 
 # Django
 db.sqlite3
@@ -19,3 +20,5 @@ staticfiles/
 Thumbs.db
 .vscode/
 .idea/
+
+notes.md
