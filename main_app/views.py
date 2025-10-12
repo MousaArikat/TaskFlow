@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import TaskForm
 from django.urls import reverse, reverse_lazy
-
-
+from .models import Task
 
 # Create your views here.
 def home_page(request):
     return render(request, 'main_app/homepage.html')
+
+
+def list_tasks(request):
+    tasks_list = Task.objects.all()
+    return render(request, 'main_app/task-list.html', {'tasks_list': tasks_list})
 
 
 def create_task(request):
