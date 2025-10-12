@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Quests(models.Model):
+class Tasks(models.Model):
     quest_id = models.BigAutoField(primary_key = True)
     title = models.CharField(max_length = 50)
     description = models.CharField(max_length = 150)
