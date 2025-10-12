@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class Tasks(models.Model):
-    quest_id = models.BigAutoField(primary_key = True)
+class Task(models.Model):
+    task_id = models.BigAutoField(primary_key = True)
     title = models.CharField(max_length = 50)
     description = models.CharField(max_length = 150)
     category = models.CharField(max_length = 40, choices = [('study', 'Study'), ('fitness','Fitness'),('work','Work'),('habit','Habit'),('daily routine','Daily Routine'),('self care','Self Care'),('other','Other')])
@@ -11,4 +11,7 @@ class Tasks(models.Model):
     is_completed = models.BooleanField(default = False)
     date_created = models.DateTimeField()
     deadline = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
 
