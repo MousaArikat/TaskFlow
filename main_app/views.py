@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TaskForm
+from .forms import TaskForm, QuestForm
 from django.urls import reverse, reverse_lazy
 from .models import Task, Quest
 from django.views.generic import DetailView, DeleteView, UpdateView
@@ -17,6 +17,29 @@ def list_quests(request):
 def list_tasks(request):
     task_list = Task.objects.all()
     return render(request, 'main_app/task-list.html', {'tasks_list': task_list})
+
+
+
+def create_quest(request):
+    if request.method == "POST":
+        form = QuestForm(request.POST)
+        if form.is_valid():
+            quest = form.save()
+            return redirect(reverse("quest_list"))
+        else:
+            return render(request, "main_app/create-quest.html", {"form" : form})
+    elif request.method == "GET":
+        form = QuestForm()
+        return render(request, "main_app/create-quest.html", {"form" : form})
+
+
+
+
+
+
+
+
+
 
 
 def create_task(request):
