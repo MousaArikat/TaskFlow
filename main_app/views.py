@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import TaskForm
 from django.urls import reverse, reverse_lazy
 from .models import Task
+from django.views.generic import DetailView
+
+
 
 # Create your views here.
 def home_page(request):
@@ -24,3 +27,9 @@ def create_task(request):
     elif request.method == "GET":
         form = TaskForm()
         return render(request, 'main_app/create-task.html', {'form' : form})
+
+class task_details_view(DetailView):
+    model = Task
+    template_name = "main_app/task-details.html"
+    context_object_name = "task"
+    pk_url_kwarg = "id"
