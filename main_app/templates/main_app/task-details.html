@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>This is the {{task}} </h1>
+   
+   <form action="/tasks/{{task.task_id}}/update" method = "post">
+        {% csrf_token %}
+        <button>Update</button>
+   </form>
+   
     <form action="/tasks/{{task.task_id}}/delete" method = "post">
         {% csrf_token %}
         <button>Delete</button>

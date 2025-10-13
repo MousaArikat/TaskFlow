@@ -34,8 +34,25 @@ class task_details_view(DetailView):
     context_object_name = "task"
     pk_url_kwarg = "id"
 
+def update_task(request, id):
+    task = Task.objects.get(pk = id)
+    if request.method == "POST":
+        form = TaskForm(request.POST, instance = task)
+        if form.is_valid():
+            task = form.save()
+            return redirect(reverse("task_list"))
+        else: 
+            return render(request, 'main_app/create-task.html', {'form' : form})
+    elif request.method == "GET":
+        form = TaskForm(instance = task)
+        return render(request, "main_app/create-task.html", {"form" : form})
+
+
+
+
 
 class task_delete_view(DeleteView):
     model = Task
     pk_url_kwarg = "id"
     success_url = reverse_lazy("task_list")
+
