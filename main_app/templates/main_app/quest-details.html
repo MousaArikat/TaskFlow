@@ -6,7 +6,7 @@
     <p> {{quest.description}} </p>
     <ul>
         {% for task in quest.task_set.all %}
-            <li>{{task}}</li>
+            <li><a href = {% url "view_task" quest_id=quest.quest_id task_id=task.task_id%}>{{task}}</a></li>
             
         {% endfor %}
     </ul>

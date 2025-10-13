@@ -37,14 +37,14 @@ class quest_details_view(DetailView):
     model = Quest
     template_name = "main_app/quest-details.html"
     context_object_name = "quest"
-    pk_url_kwarg = "id"
+    pk_url_kwarg = "quest_id"
 
 
 class task_details_view(DetailView):
     model = Task
     template_name = "main_app/task-details.html"
     context_object_name = "task"
-    pk_url_kwarg = "id"
+    pk_url_kwarg = "task_id"
 
 
 def create_task(request):
@@ -75,6 +75,9 @@ def update_task(request, id):
 
 class task_delete_view(DeleteView):
     model = Task
-    pk_url_kwarg = "id"
-    success_url = reverse_lazy("task_list")
+    pk_url_kwarg = "task_id"
+    
+    def get_success_url(self):
+        quest_id = self.object.quest.quest_id
+        return reverse_lazy('view_quest', kwargs = {'quest_id' : quest_id})
 
