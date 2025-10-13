@@ -52,7 +52,8 @@ def create_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save()
-            return redirect(reverse('task_list'))
+            quest_id = task.quest.quest_id
+            return redirect(reverse('view_quest', kwargs = {"quest_id": quest_id}))
         else:
             return render(request, 'main_app/create-task.html', {'form' : form})
     elif request.method == "GET":
@@ -60,13 +61,14 @@ def create_task(request):
         return render(request, 'main_app/create-task.html', {'form' : form})
 
 
-def update_task(request, id):
-    task = Task.objects.get(pk = id)
+def update_task(request, task_id):
+    task = Task.objects.get(pk = task_id)
     if request.method == "POST":
         form = TaskForm(request.POST, instance = task)
         if form.is_valid():
             task = form.save()
-            return redirect(reverse("task_list"))
+            quest_id = task.quest.quest_id
+            return redirect(reverse("view_quest", kwargs = {"quest_id" : quest_id}))
         else: 
             return render(request, 'main_app/create-task.html', {'form' : form})
     elif request.method == "GET":

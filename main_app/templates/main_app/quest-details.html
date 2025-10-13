@@ -2,13 +2,17 @@
 
 {% block content %}
 
-    <h1>Welcome player to the {{quest}} page</h1>
-    <p> {{quest.description}} </p>
+    <h1>Welcome player to the {{quest}} Quest!</h1>
+    <h4> {{quest.description}} </h4>
+    <h4>Your tasks:</h4>
     <ul>
         {% for task in quest.task_set.all %}
-            <li><a href = {% url "view_task" quest_id=quest.quest_id task_id=task.task_id%}>{{task}}</a></li>
-            
+            <li><a href = {% url "view_task" quest_id=quest.quest_id task_id=task.task_id%}>{{task}}</a> {{task.deadline}} {{task.is_completed}}</li>
         {% endfor %}
+        <br>
+        <a href={%url 'create_task'%}>
+            <button>Add New Task!</button>
+        </a>
     </ul>
 
 {% endblock content %}
