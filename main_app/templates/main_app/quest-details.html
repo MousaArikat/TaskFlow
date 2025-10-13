@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Welcome player to the {{quest}} page</h1>
+    <p> {{quest.description}} </p>
+    <ul>
+        {% for task in quest.task_set.all %}
+            <li>{{task}}</li>
+            
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

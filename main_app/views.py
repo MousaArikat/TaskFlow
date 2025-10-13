@@ -33,13 +33,18 @@ def create_quest(request):
         return render(request, "main_app/create-quest.html", {"form" : form})
 
 
+class quest_details_view(DetailView):
+    model = Quest
+    template_name = "main_app/quest-details.html"
+    context_object_name = "quest"
+    pk_url_kwarg = "id"
 
 
-
-
-
-
-
+class task_details_view(DetailView):
+    model = Task
+    template_name = "main_app/task-details.html"
+    context_object_name = "task"
+    pk_url_kwarg = "id"
 
 
 def create_task(request):
@@ -54,11 +59,6 @@ def create_task(request):
         form = TaskForm()
         return render(request, 'main_app/create-task.html', {'form' : form})
 
-class task_details_view(DetailView):
-    model = Task
-    template_name = "main_app/task-details.html"
-    context_object_name = "task"
-    pk_url_kwarg = "id"
 
 def update_task(request, id):
     task = Task.objects.get(pk = id)
@@ -72,10 +72,6 @@ def update_task(request, id):
     elif request.method == "GET":
         form = TaskForm(instance = task)
         return render(request, "main_app/create-task.html", {"form" : form})
-
-
-
-
 
 class task_delete_view(DeleteView):
     model = Task

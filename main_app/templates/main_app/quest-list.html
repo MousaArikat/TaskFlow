@@ -6,8 +6,11 @@
     {% for quest in quest_list %}
     
         <ul>
-            <li> {{quest}} </li>
+            <a href = "/quests/{{quest.quest_id}}"> <li> {{quest}} </li> </a>
         </ul>
 
     {% endfor %}
+    <a href={% url "create_quest" %}>
+        <button> Create Quest </button>
+    </a>
 {% endblock content %}
