@@ -19,8 +19,8 @@ difficulties = [
 
 # Create your models here.
 
-class Project(models.Model):
-    project_id = models.BigAutoField(primary_key = True)
+class Quest(models.Model):
+    quest_id = models.BigAutoField(primary_key = True)
     title = models.CharField(max_length = 50)
     description = models.CharField(max_length = 150)
     category = models.CharField(max_length = 40, 
@@ -41,7 +41,7 @@ class Task(models.Model):
     is_completed = models.BooleanField(default = False)
     date_created = models.DateTimeField(null = True)
     deadline = models.DateTimeField()
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    quest = models.ForeignKey(Quest, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title

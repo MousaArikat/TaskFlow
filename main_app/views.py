@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import TaskForm
 from django.urls import reverse, reverse_lazy
-from .models import Task
+from .models import Task, Quest
 from django.views.generic import DetailView, DeleteView, UpdateView
 
 
@@ -10,10 +10,13 @@ from django.views.generic import DetailView, DeleteView, UpdateView
 def home_page(request):
     return render(request, 'main_app/homepage.html')
 
+def list_quests(request):
+    quest_list = Quest.objects.all()
+    return render(request, 'main_app/quest-list.html', {'quest_list' : quest_list})
 
 def list_tasks(request):
-    tasks_list = Task.objects.all()
-    return render(request, 'main_app/task-list.html', {'tasks_list': tasks_list})
+    task_list = Task.objects.all()
+    return render(request, 'main_app/task-list.html', {'tasks_list': task_list})
 
 
 def create_task(request):

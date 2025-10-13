@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Quests: </h1>
+    {% for quest in quest_list %}
+    
+        <ul>
+            <li> {{quest}} </li>
+        </ul>
+
+    {% endfor %}
+{% endblock content %}
