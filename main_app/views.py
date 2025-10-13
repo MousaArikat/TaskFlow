@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import TaskForm
 from django.urls import reverse, reverse_lazy
 from .models import Task
-from django.views.generic import DetailView
+from django.views.generic import DetailView, DeleteView, UpdateView
 
 
 
@@ -33,3 +33,9 @@ class task_details_view(DetailView):
     template_name = "main_app/task-details.html"
     context_object_name = "task"
     pk_url_kwarg = "id"
+
+
+class task_delete_view(DeleteView):
+    model = Task
+    pk_url_kwarg = "id"
+    success_url = reverse_lazy("task_list")
