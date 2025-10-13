@@ -8,8 +8,9 @@
 </head>
 <body>
     <div>
-        <a href ="">Home</a>
-        <a href ="">Tasks/Quests</a>
+        <a href ={% url "home_page" %}>Home</a>
+        <a href ={% url "task_list" %}>Tasks/Quests</a>
+        <a href = {% url "create_task" %}>Create Task </a>
         <a href ="">Achievments</a>
         <a href ="">User Profile</a>
     </div>
