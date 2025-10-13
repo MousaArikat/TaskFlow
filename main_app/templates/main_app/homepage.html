@@ -4,7 +4,11 @@
     <h1>Welcome to the main page, Player!</h1>
     <h3>Ready for some leveling up?</h3>
 
+    {% if user.is_authenticated %}
+    
+    <p> Welcome Back, Player! </p>
 
+    {% else %}
     <section>
         <form action="{% url 'homepage' %}" method = "post" class = "login">
             <h1>Login</h1>
@@ -13,4 +17,5 @@
             <button type = "submit" class = "btn submit">Login</button>
         </form>
     </section>
+    {%endif%}
 {% endblock content %}
