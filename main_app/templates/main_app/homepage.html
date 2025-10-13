@@ -4,4 +4,13 @@
     <h1>Welcome to the main page, Player!</h1>
     <h3>Ready for some leveling up?</h3>
 
+
+    <section>
+        <form action="{% url 'homepage' %}" method = "post" class = "login">
+            <h1>Login</h1>
+            {% csrf_token %} {{ form.as_p }}
+            <input type="hidden" name="next" value = "{{ next }}" />
+            <button type = "submit" class = "btn submit">Login</button>
+        </form>
+    </section>
 {% endblock content %}

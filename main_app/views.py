@@ -3,12 +3,17 @@ from .forms import TaskForm, QuestForm
 from django.urls import reverse, reverse_lazy
 from .models import Task, Quest
 from django.views.generic import DetailView, DeleteView, UpdateView
-
+from django.contrib.auth.views import LoginView
 
 
 # Create your views here.
-def home_page(request):
-    return render(request, 'main_app/homepage.html')
+class Home(LoginView):
+    template_name = 'main_app/homepage.html'
+# def home_page(request):
+#     return render(request, 'main_app/homepage.html')
+
+def about_page(request):
+    return render(request, 'main_app/about.html')
 
 def list_quests(request):
     quest_list = Quest.objects.all()
