@@ -15,9 +15,23 @@ from django.http import Http404
 @login_required
 def dashboard_view(request):
     active_quests = Quest.objects.filter(user=request.user)[:3]
-    profile = UserProfile.objects.get(user=request.user)
+    quests_progress = []
+    for quest in active_quests:
+        total_tasks = quest.task_set.count()
+        completed_tasks = quest.task_set.filter(is_completed = True).count()
 
-    return render(request, 'main_app/dashboard.html', {'active_quests' : active_quests, 'profile' : profile})
+        progress = 0
+        if total_tasks > 0:
+            progress = round((completed_tasks / total_tasks) * 100)
+        
+        quests_progress.append({
+            "id" : quest.quest_id,
+            "title" : quest.title,
+            "progress": progress,
+        })
+
+    profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'main_app/dashboard.html', {'active_quests' : quests_progress, 'profile' : profile})
     
 
 

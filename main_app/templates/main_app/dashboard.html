@@ -18,40 +18,23 @@
 
   <section class="quests-section">
     <h3>Active Quests</h3>
-
-    <div class="quest-card purple">
-      <div class="quest-info">
-        <h4>Finish AI Course</h4>
-        <p>80%</p>
-        <div class="progress-bar">
-          <div class="progress" style="width: 80%;"></div>
-        </div>
-      </div>
-      <a href="#" class="view-btn">View Tasks</a>
-    </div>
-
-    <div class="quest-card green">
-      <div class="quest-info">
-        <h4>Build Portfolio</h4>
-        <p>5/10 Tasks</p>
-        <div class="progress-bar">
-          <div class="progress" style="width: 50%;"></div>
-        </div>
-      </div>
-      <a href="#" class="view-btn">View Tasks</a>
-    </div>
-
-    <div class="quest-card blue">
-      <div class="quest-info">
-        <h4>Read "Atomic Habits"</h4>
-        <p>Ch. 3 / 20</p>
-        <div class="progress-bar">
-          <div class="progress" style="width: 15%;"></div>
-        </div>
-      </div>
-      <a href="#" class="view-btn">View Tasks</a>
-    </div>
-
+      {% if active_quests %}
+        {% for quest in active_quests %}
+          <div class = "quest-card {%cycle 'purple' 'green' 'blue' %}">
+            <div class = "quest-info">
+              <h4>{{quest.title}}</h4>
+              <p> {{quest.progress}}%</p>
+              <div class = "progress-bar">
+                <div class = "progress" style = "width: {{quest.progress}}%"></div>
+              </div>
+            </div>
+            <a href="{% url 'view_quest' quest.id %}" class="view-btn">View Tasks</a>
+          </div>
+        {% endfor %}
+      
+      {% else %}
+          <p>No Active Quests Yet, what are you waiting for, create one now!</p>
+      {% endif %}
   </section>
 
   <!-- Achievements Section -->
