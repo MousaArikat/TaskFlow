@@ -1,11 +1,13 @@
 from django.urls import path, include
 from . import views
-from django.contrib.auth import views 
+from django.contrib.auth import views as v
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('login/', views.LoginView.as_view(template_name = "login.html"), name = "login"),
-    path('logout/', views.LogoutView.as_view(next_page = 'login'), name = "logout"),
-    path('', views.dashboard_view, name = 'homepage'),
+    path('login/', v.LoginView.as_view(template_name = "main_app/login.html"), name = "login"),
+    path('logout/', v.LogoutView.as_view(next_page = 'login'), name = "logout"),
+    path('', views.dashboard_view ,name = 'homepage'),
     path('about/', views.about_page, name = 'about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name = 'signup'),
@@ -18,3 +20,7 @@ urlpatterns = [
     path('tasks/<int:task_id>/update', views.update_task, name = 'update_task'),
     path('tasks/<int:task_id>/delete', views.task_delete_view.as_view(), name = "delete_task"),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dashboard-container">
+
+  <!-- Profile Section -->
+  <section class="profile-card">
+    <img src="{% static 'main_app/assets/images/ranks/s-rank.png' %}" alt="Rank Badge" class="rank-icon">
+    <h2 class="rank-title">S-RANK HUNTER</h2>
+    <p class="xp">XP: 12,500 / 15,000</p>
+    <div class="xp-bar">
+      <div class="xp-progress" style="width: 83%;"></div>
+    </div>
+    <p class="streak">🔥 Streak: 14 days</p>
+  </section>
+
+  <!-- Active Quests Section -->
+  <section class="quests-section">
+    <h3>Active Quests</h3>
+
+    <div class="quest-card purple">
+      <div class="quest-info">
+        <h4>Finish AI Course</h4>
+        <p>80%</p>
+        <div class="progress-bar">
+          <div class="progress" style="width: 80%;"></div>
+        </div>
+      </div>
+      <a href="#" class="view-btn">View Tasks</a>
+    </div>
+
+    <div class="quest-card green">
+      <div class="quest-info">
+        <h4>Build Portfolio</h4>
+        <p>5/10 Tasks</p>
+        <div class="progress-bar">
+          <div class="progress" style="width: 50%;"></div>
+        </div>
+      </div>
+      <a href="#" class="view-btn">View Tasks</a>
+    </div>
+
+    <div class="quest-card blue">
+      <div class="quest-info">
+        <h4>Read "Atomic Habits"</h4>
+        <p>Ch. 3 / 20</p>
+        <div class="progress-bar">
+          <div class="progress" style="width: 15%;"></div>
+        </div>
+      </div>
+      <a href="#" class="view-btn">View Tasks</a>
+    </div>
+
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="achievements-section">
+    <h3>Achievements</h3>
+    <div class="achievements-list">
+
+      <div class="achievement-card">
+        <img src="{% static 'main_app/assets/first_strike.png' %}" alt="First Strike">
+        <div>
+          <h4>FIRST STRIKE</h4>
+          <p>Complete 10 Tasks</p>
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <img src="{% static 'main_app/assets/streak_savant.png' %}" alt="Streak Savant">
+        <div>
+          <h4>STREAK SAVANT</h4>
+          <p>7-Day Streak</p>
+        </div>
+      </div>
+
+      <div class="achievement-card locked">
+        <img src="{% static 'main_app/assets/quest_master.png' %}" alt="Quest Master">
+        <div>
+          <h4>QUEST MASTER</h4>
+          <p>Coming Soon...</p>
+        </div>
+      </div>
+
+      <div class="achievement-card locked">
+        <img src="{% static 'main_app/assets/daily_grinder.png' %}" alt="Daily Grinder">
+        <div>
+          <h4>DAILY GRINDER</h4>
+          <p>Coming Soon...</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+{% endblock %}

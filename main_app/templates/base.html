@@ -13,8 +13,7 @@
     <nav class = "navbar">
         <div class = "nav-container">
             <a href="{% url 'homepage' %}" class="nav-logo">
-                <img src="{% static 'main_app/assets/logo_icon.svg' %}" alt="Logo Icon" class="logo-icon">
-                FlowQuest
+                <img src="{% static 'main_app/assets/images/taskflow-logo-transparent.png' %}" alt="Logo Icon" class="logo-icon">
             </a>
             {% if user.is_authenticated %}
                 <ul class = "nav-menu">
