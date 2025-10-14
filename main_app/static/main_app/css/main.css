@@ -1,22 +1,16 @@
-/* static/main_app/css/main.css */
-
-/* --- General & Body Styles --- */
 :root {
     --bg-color: #e8edf3; /* Light background */
     --card-bg: #ffffff; /* White card background */
     --text-primary: #2c3e50; /* Dark text */
     --text-secondary: #7f8c9b; /* Grey text */
     
-    /* Profile Card Gradient (from Image 2) */
     --profile-gradient-start: #6a82fb; /* Purple-blue */
     --profile-gradient-end: #a777e3;   /* Lighter purple */
 
-    /* Quest Card Base Colors (lighter shades for the outer card) */
     --quest-purple-base: #dbcced; /* Very light purple */
     --quest-green-base: #ccebda; /* Very light green */
     --quest-blue-base: #cce3ee;  /* Very light blue */
 
-    /* Quest Card Inner Container Gradients (darker, more intense for the inner shape) */
     --quest-purple-inner-start: #957dad; /* Darker purple */
     --quest-purple-inner-end: #ad94d2;   /* Lighter purple */
     
@@ -46,7 +40,6 @@ body {
     line-height: 1.6;
 }
 
-/* --- Navbar (no change needed here for colors, but keeping for completeness) --- */
 .navbar {
     background-color: var(--card-bg);
     padding: 1rem 2rem;
@@ -56,28 +49,29 @@ body {
     height: 85px;
 }
 
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    margin-top: -22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
     color: var(--text-primary);
-    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 .logo-icon {
-    width: 100px;
+    width: 175px;
     height: auto;
+    margin-top: -17px;
+}
+
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: -48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-menu, .nav-menu-logged-out {
@@ -171,9 +165,13 @@ body {
 }
 
 .rank-icon {
-  width: 500px;
-  margin-bottom: 1rem;
+  width: 500px;      
+  height: 400px;        
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto 1rem; 
 }
+
 
 .rank-title {
   font-size: 1.8rem;
@@ -208,7 +206,7 @@ body {
 /* Quests */
 .quests-section {
   flex: 2;
-  background: #fff;
+  background: transparent;
   padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -268,11 +266,7 @@ body {
   background: #5a54d8;
 }
 
-.quest-card.purple { border-left: 6px solid #6c63ff; }
-.quest-card.green { border-left: 6px solid #4CAF50; }
-.quest-card.blue { border-left: 6px solid #2196F3; }
 
-/* Achievements */
 .achievements-section {
   flex: 1;
   background-image: linear-gradient(to bottom, #bcd3cb, #e8f1ee);

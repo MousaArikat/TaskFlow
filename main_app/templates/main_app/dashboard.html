@@ -6,9 +6,8 @@
 
 <div class="dashboard-container">
 
-  <!-- Profile Section -->
   <section class="profile-card">
-    <img src="{% static 'main_app/assets/images/ranks/s-rank.png' %}" alt="Rank Badge" class="rank-icon">
+    <img src="{{profile.rank.badge_icon.url}}" alt="Rank Badge" class="rank-icon">
     <h2 class="rank-title">S-RANK HUNTER</h2>
     <p class="xp">XP: 12,500 / 15,000</p>
     <div class="xp-bar">
@@ -17,7 +16,6 @@
     <p class="streak">🔥 Streak: 14 days</p>
   </section>
 
-  <!-- Active Quests Section -->
   <section class="quests-section">
     <h3>Active Quests</h3>
 
