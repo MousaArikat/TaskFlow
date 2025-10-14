@@ -1,3 +1,28 @@
+:root{
+    --bg-color: #f4f7fa;
+    --card-bg: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c9b;
+    --accent-gold: #ffc107;
+    --accent-purple: #8e44ad;
+    --accent-green: #27ae60;
+    --accent-blue: #2980b9;
+    --progress-bar-bg: #e0e0e0;
+    --border-color: #ecf0f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
 .navbar{
     background-color: var(--card-bg);
     padding: 1rem 2rem;
@@ -34,4 +59,52 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+
+.nav-menu-logged-out {
+    margin-left: auto;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3 ease
+}
+
+.nav-link:hover{
+    color: var(--text-primary)
+}
+
+.nav-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+.primary-action {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+.primary-action:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+
+.nav-link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; /* Adjust to match .nav-link if needed */
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
