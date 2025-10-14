@@ -15,11 +15,16 @@ class Home(LoginView):
 def about_page(request):
     return render(request, 'main_app/about.html')
 
+
+
+
 def create_quest(request):
     if request.method == "POST":
         form = QuestForm(request.POST)
         if form.is_valid():
-            quest = form.save()
+            quest = form.save(commit = False)
+            quest.user = request.user
+            quest.save()
             return redirect(reverse("quest_list"))
         else:
             return render(request, "main_app/create-quest.html", {"form" : form})
@@ -36,6 +41,10 @@ class quest_details_view(DetailView):
 def list_quests(request):
     quest_list = Quest.objects.all()
     return render(request, 'main_app/quest-list.html', {'quest_list' : quest_list})
+
+
+
+
 
 
 def list_tasks(request):
@@ -96,7 +105,7 @@ def signup(request):
             return redirect('homepage')
         else:
             error_message = 'Invalid Sign Up - please try again!'
+            return render(request, 'main_app/signup.html', {"form" : form, 'error_message' : error_message})
     elif request.method == "GET":
-        form = CustomUserCreationForm
-        context = {"form" : form, 'error_message' : error_message}
-        return render(request, 'main_app/signup.html', context)
+        form = CustomUserCreationForm()
+        return render(request, 'main_app/signup.html', {"form" : form, 'error_message' : error_message})
