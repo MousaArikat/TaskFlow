@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.Home.as_view(), name = 'homepage'),
     path('about/', views.about_page, name = 'about'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup', views.signup, name = 'signup'),
     path('list', views.list_tasks, name = 'task_list'),
     path('create', views.create_task, name = 'create_task'),
     path('quests/view', views.list_quests, name = "quest_list"),
