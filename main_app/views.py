@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import TaskForm, QuestForm, CustomUserCreationForm
 from django.urls import reverse, reverse_lazy
 from .models import Task, Quest
-from django.views.generic import DetailView, DeleteView, UpdateView, ListView
+from django.views.generic import DetailView, DeleteView, UpdateView, ListView, TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -12,8 +12,15 @@ from django.http import Http404
 
 
 # Create your views here.
-class Home(LoginView):
-    template_name = 'main_app/homepage.html'
+@login_required
+def dashboard_view(request):
+    active_quests = Quest.objects.filter(user=request.user)[:3]
+
+    return render(request, 'main_app/dashboard.html', {'active_quests' : active_quests})
+    
+
+
+
 
 def about_page(request):
     return render(request, 'main_app/about.html')
