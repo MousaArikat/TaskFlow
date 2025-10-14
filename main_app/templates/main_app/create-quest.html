@@ -1,15 +1,126 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<style>
+  body {
+    background: #f5f7fa;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .quest-form-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    background: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .quest-form-container h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.4rem;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.8px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #2c3e50;
+    background: #f9fafb;
+    transition: 0.3s;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #6c63ff;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(108, 99, 255, 0.3);
+  }
+
+  button {
+    margin-top: 1.8rem;
+    background: linear-gradient(90deg, #6c63ff, #5ec2ff);
+    color: #fff;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+  button:hover {
+    background: linear-gradient(90deg, #5a54d8, #4ba6e3);
+    transform: translateY(-2px);
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.2rem;
+    color: #6c63ff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link:hover {
+    color: #4a3fb3;
+  }
+</style>
+{% endblock head %}
 
 {% block content %}
+<div class="quest-form-container">
+  <h1>Create a New Quest</h1>
 
-    <form method = "post">
-        {% csrf_token %}
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <p class="help-text">{{ field.help_text }}</p>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: #e53935; font-size: 0.9rem; margin-top: 0.3rem;">{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit">Create Quest</button>
+  </form>
 
-            {% for field in form %}
-                {{field.label}}
-                {{field}}
-            {% endfor %}
-        <button> Submit </button>
-    </form>
-
+  <a href="{% url 'quest_list' %}" class="back-link">← Back to My Quests</a>
+</div>
 {% endblock content %}
