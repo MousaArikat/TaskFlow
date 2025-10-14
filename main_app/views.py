@@ -231,5 +231,4 @@ def delete_quest(request, quest_id):
         quest.delete()
         return redirect('quest_list')
     else:
-        # Optional: show a confirmation page (or just redirect)
         return redirect('view_quest', quest_id=quest_id)

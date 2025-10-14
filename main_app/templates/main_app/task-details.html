@@ -1,15 +1,41 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{%static 'main_app/css/tasks.css' %}">
+{% endblock head %}
 {% block content %}
-    <h1>This is the {{task}} </h1>
-   
-   <form action="/tasks/{{task.task_id}}/update" method = "post">
+<div class="task-details-container">
+    <h1>This is the {{task}} Task </h1>
+    <p class="task-meta">Belongs to Quest: <strong>{{ task.quest.title }}</strong></p>
+    <div class="task-status">
+        {% if task.is_completed %}
+        <h3 style="background : #4caf50 ; color : white ; border-radius : 10px ; width : 100px ; height : 33px; font-size: 17px;">
+            Completed</h1>
+            {% else %}
+            <h3 style="background : #ff9800 ; color : white ; border-radius : 10px ; width : 100px ; height : 33px">
+                Pending</h1>
+                {% endif %}
+    </div>
+
+    <p class="task-desc">{{ task.description }}</p>
+    <div class="task-deadline">Deadline: {{ task.deadline }}</div>
+    <div class="task-difficulty {{ task.difficulty }}">
+        Difficulty: {{ task.get_difficulty_display }}
+    </div>
+
+</div>
+
+<div class="task-actions">
+    <form action="/tasks/{{task.task_id}}/update" method="post">
         {% csrf_token %}
-        <button>Update</button>
-   </form>
-   
-    <form action="/tasks/{{task.task_id}}/delete" method = "post">
-        {% csrf_token %}
-        <button>Delete</button>
+        <button type="submit" class="task-btn update">Update Task</button>
     </form>
+
+    <form action="/tasks/{{task.task_id}}/delete" method="post">
+        {% csrf_token %}
+        <button type="submit" class="task-btn delete"
+            onclick="return confirm('Are you sure you want to delete this task?');">Delete Task</button>
+    </form>
+</div>
+</div>
 {% endblock content %}
