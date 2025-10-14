@@ -39,7 +39,8 @@ class quest_details_view(DetailView):
     pk_url_kwarg = "quest_id"
 
 def list_quests(request):
-    quest_list = Quest.objects.all()
+    quest_list = Quest.objects.filter(user = request.user)
+    quest_list = request.user.quest_set.all()
     return render(request, 'main_app/quest-list.html', {'quest_list' : quest_list})
 
 
