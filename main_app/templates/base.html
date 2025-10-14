@@ -1,31 +1,41 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block head %}
-    {% endblock head %}
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="{%static 'main_app/css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        {% if user.is_authenticated %}
-            <a href ={% url "homepage" %}>Home</a>
-            <a href ={% url "quest_list" %}>Quests</a>
-            <a href = {% url "create_task" %}>Create Tasks </a>
-            <a href ="">Achievments</a>
-            <a href ="">User Profile</a>
-            <a href ={% url "about" %}> About </a>
-            <form id = "logout-form" method = "post" action="{% url 'logout'%}">
-                {% csrf_token %}
-                <button type = "submit">Log Out</button>
-            </form>
-        {% else %}
-            <a href ={% url "homepage" %}>Login</a>
-            <a href = {% url "signup" %}>SignUp</a>
-            <a href ={% url "about" %}>About</a>    
+    <nav class = "navbar">
+        <div class = "nav-container">
+            <a href="{% url 'homepage' %}" class="nav-logo">
+                <img src="{% static 'main_app/assets/logo_icon.svg' %}" alt="Logo Icon" class="logo-icon">
+            </a>
+            {% if user.is_authenticated %}
+            <ul class = "nav-menu">
+                <li><a href ={% url "homepage" %}>Home</a> </li>
+                <li><a href ={% url "quest_list" %}>Quests</a></li>
+                <li><a href = {% url "create_task" %}>Create Tasks </a></li>
+                <li><a href ="">Achievments</a></li>
+                <li><a href ="">User Profile</a></li>
+                <li><a href ={% url "about" %}> About </a></li>
+            </ul>
+                <form id = "logout-form" method = "post" action="{% url 'logout'%}">
+                    {% csrf_token %}
+                    <button type = "submit">Log Out</button>
+                </form>
+            {% else %}
+                <a href ={% url "homepage" %}>Login</a>
+                <a href = {% url "signup" %}>SignUp</a>
+                <a href ={% url "about" %}>About</a>    
 
-        {% endif %}
-    </div>
+            {% endif %}
+        </div>
+    </nav>
     {% block content %}
     {% endblock content %}
 </body>
