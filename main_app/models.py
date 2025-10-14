@@ -52,8 +52,28 @@ class Task(models.Model):
         return self.title
 
 
+class Rank(models.Model):
+    rank_id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=50)
+    min_xp = models.IntegerField()
+    badge_icon = models.ImageField(upload_to='ranks/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+class Achievment(models.Model):
+    achievment_id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length = 50)
+    description = models.CharField(max_length = 150)
+    condition= models.CharField(max_length = 75, blank = True, null = True)
+    reward_xp = models.IntegerField()
+    icon = models.ImageField(upload_to='achievements/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+    
 class UserProfile(models.Model):
-    total_xp = models.IntegerField(default = 0)
-    rank = models.CharField(max_length= 40)
-    streak_days = models.IntegerField(default = 0)
+    total_xp = models.IntegerField()
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    achievments = models.ManyToManyField(Achievment, blank = True)
+    rank = models.ForeignKey(Rank, on_delete = models.CASCADE)
