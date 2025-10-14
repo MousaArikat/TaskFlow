@@ -17,6 +17,8 @@
         <div class="quest-card" style="border-left: 8px solid {% cycle '#6c63ff' '#4CAF50' '#2196F3' '#ff9800' '#9c27b0' %}; background: {% cycle '#6c63ff15' '#4CAF5015' '#2196F315' '#ff980015' '#9c27b015' %};">
           <div class="quest-info">
             <h4>{{ quest.title }}</h4>
+            <span class="quest-category">{{ quest.get_category_display }}</span>
+
             <p>{{ quest.description|truncatechars:80 }}</p>
           </div>
           <a href="{% url 'view_quest' quest.quest_id %}" class="view-link">View Details →</a>

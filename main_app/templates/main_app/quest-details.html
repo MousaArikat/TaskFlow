@@ -1,18 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{%static 'main_app/css/tasks.css' %}">
+{% endblock head %}
 
 {% block content %}
+<div class="quest-header">
+  <h1>Welcome, Player - This is your <span style="color:#6c63ff">{{quest.title}}</span> Quest</h1>
+  <p>{{quest.description}}</p>
 
-    <h1>Welcome player to the {{quest}} Quest!</h1>
-    <h4> {{quest.description}} </h4>
-    <h4>Your tasks:</h4>
-    <ul>
-        {% for task in quest.task_set.all %}
-            <li><a href = {% url "view_task" quest_id=quest.quest_id task_id=task.task_id%}>{{task}}</a> {{task.deadline}} {{task.is_completed}}</li>
-        {% endfor %}
-        <br>
-        <a href={%url 'create_task'%}>
-            <button>Add New Task!</button>
-        </a>
-    </ul>
+  <div class="quest-actions">
+    <a href="{% url 'update_quest' quest.quest_id %}" class="quest-action-btn update">Update Quest</a>
+    <form action="{% url 'delete_quest' quest.quest_id %}" method="post" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="delete">Delete Quest</button>
+    </form>
+  </div>
+</div>
 
+<div class="tasks-grid">
+  {% if quest.task_set.all %}
+    {% for task in quest.task_set.all %}
+      <div class="task-card {% if task.is_completed %}completed{% endif %}"
+           onclick="if(event.target.tagName.toLowerCase() !== 'button' && event.target.tagName.toLowerCase() !== 'form') { window.location.href='{% url 'view_task' quest_id=quest.quest_id task_id=task.task_id %}'; }">
+        
+        <h3>{{task.title}}</h3>
+        <p>{{ task.description }}</p>
+        <div class="task-deadline">Deadline: {{task.deadline}}</div>
+
+        <div class="task-difficulty {{ task.difficulty }}">
+          Difficulty: {{ task.get_difficulty_display }}
+        </div>
+
+        <div class="task-status {% if task.is_completed %}done{% else %}pending{% endif %}">
+          {% if task.is_completed %}Completed{% else %}Pending{% endif %}
+        </div>
+
+        {% if not task.is_completed %}
+          <form action="{% url 'mark_task_completed' task.task_id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="mark-complete-btn">Mark as Completed</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p style="text-align:center; font-size:1.2rem; color:#7f8c9b;">
+      No tasks yet. Time to start your mission!
+    </p>
+  {% endif %}
+</div>
+
+<div style="text-align:center;">
+  <a href="{% url 'create_task' %}" class="create-task-btn">+ Add New Task</a>
+</div>
 {% endblock content %}

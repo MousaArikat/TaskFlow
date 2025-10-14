@@ -191,3 +191,45 @@ def signup(request):
     elif request.method == "GET":
         form = CustomUserCreationForm()
         return render(request, 'main_app/signup.html', {"form" : form, 'error_message' : error_message})
+    
+
+@login_required
+def mark_task_completed(request, task_id):
+    task = Task.objects.get(pk=task_id)
+    if task.quest.user != request.user:
+        raise Http404("You cannot complete tasks that aren't yours!")
+    
+    task.is_completed = True
+    task.save()
+    return redirect('view_quest', quest_id=task.quest.quest_id)
+
+@login_required
+def update_quest(request, quest_id):
+    quest = Quest.objects.get(pk=quest_id)
+    if quest.user != request.user:
+        raise Http404("This quest doesn't belong to you, player!")
+
+    if request.method == "POST":
+        form = QuestForm(request.POST, instance=quest)
+        if form.is_valid():
+            form.save()
+            return redirect('view_quest', quest_id=quest.quest_id)
+        else:
+            return render(request, "main_app/create-quest.html", {"form": form})
+    elif request.method == "GET":
+        form = QuestForm(instance=quest)
+        return render(request, "main_app/create-quest.html", {"form": form})
+
+
+@login_required
+def delete_quest(request, quest_id):
+    quest = Quest.objects.get(pk=quest_id)
+    if quest.user != request.user:
+        raise Http404("This quest doesn't belong to you, player!")
+
+    if request.method == "POST":
+        quest.delete()
+        return redirect('quest_list')
+    else:
+        # Optional: show a confirmation page (or just redirect)
+        return redirect('view_quest', quest_id=quest_id)
