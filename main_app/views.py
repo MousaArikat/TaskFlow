@@ -6,6 +6,9 @@ from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 
 
 # Create your views here.
@@ -17,7 +20,7 @@ def about_page(request):
 
 
 
-
+@login_required
 def create_quest(request):
     if request.method == "POST":
         form = QuestForm(request.POST)
@@ -31,13 +34,17 @@ def create_quest(request):
     elif request.method == "GET":
         form = QuestForm()
         return render(request, "main_app/create-quest.html", {"form" : form})
-
-class quest_details_view(DetailView):
+class quest_details_view(LoginRequiredMixin, DetailView):
     model = Quest
     template_name = "main_app/quest-details.html"
     context_object_name = "quest"
     pk_url_kwarg = "quest_id"
 
+    def get_queryset(self):
+        return Quest.objects.filter(user = self.request.user)
+
+
+@login_required
 def list_quests(request):
     quest_list = Quest.objects.filter(user = request.user)
     quest_list = request.user.quest_set.all()
@@ -47,15 +54,16 @@ def list_quests(request):
 
 
 
-
+@login_required
 def list_tasks(request):
     task_list = Task.objects.all()
     return render(request, 'main_app/task-list.html', {'tasks_list': task_list})
 
-
+@login_required
 def create_task(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
+        form.fields['quest'].queryset = Quest.objects.filter(user=request.user)
         if form.is_valid():
             task = form.save()
             quest_id = task.quest.quest_id
@@ -64,20 +72,27 @@ def create_task(request):
             return render(request, 'main_app/create-task.html', {'form' : form})
     elif request.method == "GET":
         form = TaskForm()
+        form.fields['quest'].queryset = Quest.objects.filter(user=request.user)
         return render(request, 'main_app/create-task.html', {'form' : form})
-
-class task_details_view(DetailView):
+class task_details_view(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "main_app/task-details.html"
     context_object_name = "task"
     pk_url_kwarg = "task_id"
 
+    def get_queryset(self):
+        return Task.objects.filter(quest__user = self.request.user)
 
 
+@login_required
 def update_task(request, task_id):
     task = Task.objects.get(pk = task_id)
+    if task.quest.user != request.user:
+        raise Http404("This task doesn't belong to you, player!")
+
     if request.method == "POST":
         form = TaskForm(request.POST, instance = task)
+        form.fields['quest'].queryset = Quest.objects.filter(user=request.user)
         if form.is_valid():
             task = form.save()
             quest_id = task.quest.quest_id
@@ -86,9 +101,12 @@ def update_task(request, task_id):
             return render(request, 'main_app/create-task.html', {'form' : form})
     elif request.method == "GET":
         form = TaskForm(instance = task)
+        form.fields['quest'].queryset = Quest.objects.filter(user=request.user)
         return render(request, "main_app/create-task.html", {"form" : form})
 
-class task_delete_view(DeleteView):
+
+
+class task_delete_view(LoginRequiredMixin,DeleteView):
     model = Task
     pk_url_kwarg = "task_id"
     
