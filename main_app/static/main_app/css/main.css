@@ -41,7 +41,7 @@ body {
 }
 
 .navbar {
-    background-color: var(--card-bg);
+    background-color: #e6ebf1;
     padding: 1rem 2rem;
     box-shadow: 0 2px 10px var(--shadow-light);
     position: sticky;

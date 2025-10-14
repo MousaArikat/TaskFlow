@@ -8,10 +8,14 @@
 
   <section class="profile-card">
     <img src="{{profile.rank.badge_icon.url}}" alt="Rank Badge" class="rank-icon">
-    <h2 class="rank-title">S-RANK HUNTER</h2>
-    <p class="xp">XP: 12,500 / 15,000</p>
+    <h2 class="rank-title">{{profile.rank.title}}</h2>
+    {% if next_min %}
+        <p class="xp">XP: {{profile.total_xp}} / {{next_min}}</p>
+    {% else %}
+        <p class="xp">XP: {{profile.total_xp}}</p>
+    {% endif %}
     <div class="xp-bar">
-      <div class="xp-progress" style="width: 83%;"></div>
+      <div class="xp-progress" style="width: {{rank_progress}}%;"></div>
     </div>
     <p class="streak">🔥 Streak: 14 days</p>
   </section>

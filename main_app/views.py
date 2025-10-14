@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import TaskForm, QuestForm, CustomUserCreationForm
 from django.urls import reverse, reverse_lazy
-from .models import Task, Quest, UserProfile
+from .models import Task, Quest, UserProfile, Rank
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView, TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
@@ -14,6 +14,43 @@ from django.http import Http404
 # Create your views here.
 @login_required
 def dashboard_view(request):
+    profile = UserProfile.objects.get(user = request.user)
+    xp = profile.total_xp
+
+    if xp>15000:
+        rank = Rank.objects.get(title = "S-RANK MASTER: THE SHADOW MONARCH")
+        current_min = 15000
+        next_min = None
+    elif xp > 8000:
+        rank = Rank.objects.get(title = "A-RANK ELITE: ELITE HUNTER")
+        current_min = 8000
+        next_min = 15000
+    elif xp > 4000:
+        rank = Rank.objects.get(title = "B-RANK EXPERT - THE PHANTOM HUNTER")
+        current_min = 4000
+        next_min = 8000
+    elif xp > 2000:
+        rank = Rank.objects.get(title = "C-RANK ADEPT: APEX HUNTER")
+        current_min = 2000
+        next_min = 4000
+    elif xp > 500:
+        rank = Rank.objects.get(title = "D-RANK NOVICE: MANA HUNTER")
+        current_min = 500
+        next_min = 2000
+    else:
+        rank = Rank.objects.get(title = "E-RANK ROOKIE: AWAKENED HUNTER")
+        current_min = 0
+        next_min = 2000
+
+    if profile.rank != rank:
+        profile.rank = rank
+        profile.save()
+    
+    if next_min:
+        progress = ((xp-current_min)/ (next_min - current_min) * 100)
+    else:
+        progress = 100
+
     active_quests = Quest.objects.filter(user=request.user)[:3]
     quests_progress = []
     for quest in active_quests:
@@ -31,7 +68,11 @@ def dashboard_view(request):
         })
 
     profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'main_app/dashboard.html', {'active_quests' : quests_progress, 'profile' : profile})
+    return render(request, 'main_app/dashboard.html', {'active_quests' : quests_progress, 
+                                                       'profile' : profile, 
+                                                       'rank_progress' : round(progress,1), 
+                                                       'current_min' : current_min, 
+                                                       'next_min' : next_min})
     
 
 
