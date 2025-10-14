@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
 <div class="dashboard-container">
 
@@ -24,7 +23,7 @@
     <h3>Active Quests</h3>
       {% if active_quests %}
         {% for quest in active_quests %}
-          <div class = "quest-card {%cycle 'purple' 'green' 'blue' %}">
+        <div class="quest-card" style="border-left: 8px solid {% cycle '#6c63ff' '#4CAF50' '#2196F3' '#ff9800' '#9c27b0' %}; background: {% cycle '#6c63ff15' '#4CAF5015' '#2196F315' '#ff980015' '#9c27b015' %};">
             <div class = "quest-info">
               <h4>{{quest.title}}</h4>
               <p> {{quest.progress}}%</p>

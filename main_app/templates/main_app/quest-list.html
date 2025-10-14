@@ -1,16 +1,35 @@
 {% extends "base.html" %}
+{% block head %}
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 
+{% endblock head %}
 {% block content %}
+  <div class="quests-container">
+    <h1>Your Quests, Player!</h1>
 
-    <h1>Quests: </h1>
-    {% for quest in quest_list %}
-    
-        <ul>
-            <a href = "/quests/{{quest.quest_id}}"> <li> {{quest}} </li> </a>
-        </ul>
+    {% if quest_list %}
+      {% for quest in quest_list %}
+        <div class="quest-card" style="border-left: 8px solid {% cycle '#6c63ff' '#4CAF50' '#2196F3' '#ff9800' '#9c27b0' %}; background: {% cycle '#6c63ff15' '#4CAF5015' '#2196F315' '#ff980015' '#9c27b015' %};">
+          <div class="quest-info">
+            <h4>{{ quest.title }}</h4>
+            <p>{{ quest.description|truncatechars:80 }}</p>
+          </div>
+          <a href="{% url 'view_quest' quest.quest_id %}" class="view-link">View Details →</a>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="text-align:center; font-size:1.2rem; color:#7f8c9b; margin-top:2rem;">
+        🪐 No quests yet. Start your journey!
+      </p>
+    {% endif %}
 
-    {% endfor %}
-    <a href={% url "create_quest" %}>
-        <button> Create Quest </button>
-    </a>
+    <div style="text-align: center;">
+      <a href="{% url 'create_quest' %}" class="create-quest-btn">+ Create New Quest</a>
+    </div>
+  </div>
 {% endblock content %}

@@ -1,27 +1,17 @@
 :root {
-    --bg-color: #e8edf3; /* Light background */
-    --card-bg: #ffffff; /* White card background */
-    --text-primary: #2c3e50; /* Dark text */
-    --text-secondary: #7f8c9b; /* Grey text */
+    --text-primary: #2c3e50; 
+    --text-secondary: #7f8c9b; 
     
-    --profile-gradient-start: #6a82fb; /* Purple-blue */
-    --profile-gradient-end: #a777e3;   /* Lighter purple */
-
-    --quest-purple-base: #dbcced; /* Very light purple */
-    --quest-green-base: #ccebda; /* Very light green */
-    --quest-blue-base: #cce3ee;  /* Very light blue */
-
-    --quest-purple-inner-start: #957dad; /* Darker purple */
-    --quest-purple-inner-end: #ad94d2;   /* Lighter purple */
+    --quest-purple-base: #dbcced;
+    --quest-green-base: #ccebda; 
+    --quest-blue-base: #cce3ee;  
+    --quest-green-inner-start: #65b891;  
+    --quest-green-inner-end: #87d2b4;   
     
-    --quest-green-inner-start: #65b891;  /* Darker green */
-    --quest-green-inner-end: #87d2b4;    /* Lighter green */
-    
-    --quest-blue-inner-start: #69a7d3;   /* Darker blue */
-    --quest-blue-inner-end: #8fc7eb;     /* Lighter blue */
+    --quest-blue-inner-start: #69a7d3;   
+    --quest-blue-inner-end: #8fc7eb;   
 
-    --accent-gold: #ffc107; /* Used for progress bars, etc. */
-    --progress-bar-bg: #e0e0e0;
+    --accent-gold: #ffc107; 
     --border-color: #ecf0f1;
     --shadow-light: rgba(0, 0, 0, 0.05);
     --shadow-medium: rgba(0, 0, 0, 0.1);
@@ -50,25 +40,26 @@ body {
 }
 
 
-
 .nav-logo {
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  height: auto;
 }
 
 .logo-icon {
-    width: 175px;
-    height: auto;
-    margin-top: -17px;
+  width: 175px;
+height: auto;  display: block;
+  margin: 0;
 }
 
 
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
-    margin-top: -48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,14 +88,14 @@ body {
 }
 
 .primary-action {
-    background-color: var(--quest-blue-inner-end); /* Adjusted to new blue var */
+    background-color: var(--quest-blue-inner-end); 
     color: white;
     padding: 0.5rem 1.25rem;
     border-radius: 20px;
     transition: background-color 0.3s ease;
 }
 .primary-action:hover {
-    background-color: var(--quest-blue-inner-start); /* Darker blue on hover */
+    background-color: var(--quest-blue-inner-start); 
     color: white;
 }
 
@@ -144,14 +135,18 @@ body {
     object-fit: cover;
 }
 
+html, body {
+  height: 100%;
+}
+
 .dashboard-container {
+  min-height: calc(100vh - 85px); /* subtract navbar height */
   display: flex;
   justify-content: space-between;
-  align-items: strecth;
+  align-items: stretch;
   gap: 2rem;
   padding: 2rem;
   background: #f5f7fa;
-  min-height: 100vh;
 }
 
 .profile-card,
@@ -164,8 +159,6 @@ body {
   min-height: 600px;       
 }
 
-
-/* Profile */
 .profile-card {
   flex: 1;
   background-image: linear-gradient(to bottom, #a7addc , #e3e7f3);
@@ -182,7 +175,6 @@ body {
   display: block;
   margin: 0 auto 1rem; 
 }
-
 
 .rank-title {
   font-size: 1.8rem;
@@ -214,7 +206,6 @@ body {
   font-weight: bold;
 }
 
-/* Quests */
 .quests-section {
   flex: 2;
   background: transparent;
@@ -277,7 +268,6 @@ body {
   background: #5a54d8;
 }
 
-
 .achievements-section {
   flex: 1;
   background-image: linear-gradient(to bottom, #bcd3cb, #e8f1ee);
@@ -315,20 +305,83 @@ body {
   filter: grayscale(100%);
 }
 
+.quests-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
 
-.quest-card.purple {
-   border-left: 37px solid #6c63ff;
-   background-color: #eaebec;
-   margin-top: 20px;
-   }
-.quest-card.green  { 
-  border-left: 37px solid #4CAF50;
-  background-color: #eaebec;
+.quests-container h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+  }
 
-}
-.quest-card.blue   { 
-  border-left: 37px solid #2196F3; 
-  background-color: #eaebec
+.quest-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafc;
+    padding: 1.2rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.2rem;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
 
-}
+.quest-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
 
+.quest-info h4 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
+  }
+
+.quest-info p {
+    margin: 0.3rem 0 0;
+    font-size: 0.95rem;
+    color: #7f8c9b;
+  }
+
+.view-link {
+    text-decoration: none;
+    color: #6c63ff;
+    font-weight: bold;
+    border: 2px solid #6c63ff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
+.view-link:hover {
+    background: #6c63ff;
+    color: #fff;
+  }
+
+.create-quest-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    background: linear-gradient(90deg, #6c63ff, #5ec2ff);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    text-align: center;
+  }
+
+.create-quest-btn:hover {
+    background: linear-gradient(90deg, #5a54d8, #4ba6e3);
+    transform: translateY(-2px);
+  }
