@@ -73,7 +73,7 @@ class Achievment(models.Model):
         return self.title
     
 class UserProfile(models.Model):
-    total_xp = models.IntegerField()
+    total_xp = models.IntegerField(default = 0)
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     achievments = models.ManyToManyField(Achievment, blank = True)
-    rank = models.ForeignKey(Rank, on_delete = models.CASCADE)
+    rank = models.ForeignKey(Rank, null = True, blank = True, on_delete = models.CASCADE)
