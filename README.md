@@ -19,13 +19,13 @@
 - Profile Page – Personalized profile with XP tracking and rank display.
 
 ## Rank System ##
-Rank Title	                    XP Range
-- E-RANK ROOKIE: AWAKENED HUNTER	0 – 499
-- D-RANK NOVICE: MANA HUNTER	500 – 1999
-- C-RANK ADEPT: APEX HUNTER	2000 – 3999
-- B-RANK EXPERT: THE PHANTOM HUNTER	4000 – 7999
-- A-RANK ELITE: ELITE HUNTER	8000 – 14999
-- S-RANK MASTER: THE SHADOW MONARCH	15000+
+Rank Title	                  
+- **E-RANK ROOKIE: AWAKENED HUNTER	**       0 – 499
+- **D-RANK NOVICE: MANA HUNTER**	     500 – 1999
+- **C-RANK ADEPT: APEX HUNTER**	      2000 – 3999
+- **B-RANK EXPERT: THE PHANTOM HUNTER**	       4000 – 7999
+- **A-RANK ELITE: ELITE HUNTER**	8000 – 14999
+- **S-RANK MASTER: THE SHADOW MONARCH**	      15000+
 
 ## The Stack ##
 
@@ -51,4 +51,4 @@ Authentication: **Django Authentication**
 
  - Enable progress analytics and reports
 
-### Note: Some of the css animations and design were taken from the open source css website :https://uiverse.io/ ###
+### Note: Some of the css animations and design were taken from the open source css website: https://uiverse.io/ ###
