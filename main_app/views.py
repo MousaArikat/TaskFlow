@@ -28,7 +28,7 @@ def dashboard_view(request):
         current_min = 8000
         next_min = 15000
     elif xp >= 4000:
-        rank = Rank.objects.get(title = "B-RANK EXPERT - THE PHANTOM HUNTER")
+        rank = Rank.objects.get(title = "B-RANK EXPERT: THE PHANTOM HUNTER")
         current_min = 4000
         next_min = 8000
     elif xp >= 2000:
