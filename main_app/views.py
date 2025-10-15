@@ -14,7 +14,7 @@ from django.http import Http404
 # Create your views here.
 @login_required
 def dashboard_view(request):
-    profile = UserProfile.objects.get(user = request.user)
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
     xp = profile.total_xp
 
     if xp>15000:
@@ -199,8 +199,20 @@ def mark_task_completed(request, task_id):
     if task.quest.user != request.user:
         raise Http404("You cannot complete tasks that aren't yours!")
     
-    task.is_completed = True
-    task.save()
+    if not task.is_completed:
+
+        task.is_completed = True
+        task.save()
+
+        profile = UserProfile.objects.get(user= request.user)
+
+        if task.difficulty == "easy":
+            profile.total_xp += 50
+        elif task.difficulty == "medium":
+            profile.total_xp += 100
+        elif task.difficulty == "hard":
+            profile.total_xp += 200
+        profile.save(())
     return redirect('view_quest', quest_id=task.quest.quest_id)
 
 @login_required
