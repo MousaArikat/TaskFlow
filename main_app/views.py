@@ -287,3 +287,17 @@ def user_profile(request):
         "next_min": next_min
     })
 
+
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def create_admin_user(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(
+            username="admin",
+            email="admin@example.com",
+            password="admin12345"
+        )
+        return HttpResponse("Superuser created successfully!")
+    return HttpResponse("Superuser already exists.")
+

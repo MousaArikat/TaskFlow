@@ -24,6 +24,8 @@ urlpatterns = [
     path("tasks/<int:task_id>/complete/", views.mark_task_completed, name="mark_task_completed"),
     path('quest/<int:quest_id>/update/', views.update_quest, name='update_quest'),
     path('quest/<int:quest_id>/delete/', views.delete_quest, name='delete_quest'),
+    path("create-admin/", views.create_admin_user), 
+
 
 
 ]
