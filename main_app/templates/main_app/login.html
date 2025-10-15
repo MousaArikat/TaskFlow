@@ -1,10 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{%static 'main_app/css/user.css' %}">
+
+{% endblock head %}
 
 {% block content %}
     <form method = "post" class = "login-form">
         <h1>
-            Welcome Player, Login in with your credintials to continue your path to greatness!.
+            Welcome Back, Player...
         </h1>
+        <h1>Ready to continue your path to the flow state?</h1>
 
         {% csrf_token %}
 

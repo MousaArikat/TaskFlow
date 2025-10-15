@@ -1,0 +1,91 @@
+.login-form {
+  max-width: 480px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #46e5ef, #813db6);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  text-align: center;
+  color: #f5f5f5;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.login-form h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.login-form p {
+  margin: 0.7rem 0;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #ddd;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.3rem;
+  border: 2px solid #6c63ff;
+  border-radius: 10px;
+  background: #7777b8;
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #9c27b0;
+  box-shadow: 0 0 8px rgba(156, 39, 176, 0.7);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(90deg, #6c63ff, #9c27b0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(90deg, #5a54d1, #7b1fa2);
+  transform: scale(1.03);
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.signup-link a {
+  color: #38e0e7;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: #9c27b0;
+  text-decoration: underline;
+}
+
+/* Smooth fade-in for page */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
