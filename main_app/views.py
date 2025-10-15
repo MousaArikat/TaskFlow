@@ -63,7 +63,7 @@ def dashboard_view(request):
         if total_tasks > 0:
             quest_progress = round((completed_tasks / total_tasks) * 100)
         else:
-            guest_progress = 0
+            quest_progress = 0
         
         quests_progress.append({
             "id" : quest.quest_id,
