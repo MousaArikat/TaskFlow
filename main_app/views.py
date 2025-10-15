@@ -62,6 +62,8 @@ def dashboard_view(request):
         progress = 0
         if total_tasks > 0:
             quest_progress = round((completed_tasks / total_tasks) * 100)
+        else:
+            guest_progress = 0
         
         quests_progress.append({
             "id" : quest.quest_id,
@@ -286,18 +288,4 @@ def user_profile(request):
         "current_min": current_min,
         "next_min": next_min
     })
-
-
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-
-def create_admin_user(request):
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            username="admin",
-            email="admin@example.com",
-            password="admin12345"
-        )
-        return HttpResponse("Superuser created successfully!")
-    return HttpResponse("Superuser already exists.")
 
