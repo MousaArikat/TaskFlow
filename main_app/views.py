@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 
+def view_achievments(request):
+    return render(request, "main_app/achievments.html")
 
 # Create your views here.
 @login_required

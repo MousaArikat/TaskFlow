@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', v.LoginView.as_view(template_name = "main_app/login.html"), name = "login"),
     path('logout/', v.LogoutView.as_view(next_page = 'login'), name = "logout"),
     path('', views.dashboard_view ,name = 'homepage'),
+    path('achievments/', views.view_achievments, name = "view_achievments"),
     path('about/', views.about_page, name = 'about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name = 'signup'),

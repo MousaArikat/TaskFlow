@@ -1,5 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{%static 'main_app/css/about.css' %}">
+{% endblock head %}
 
 {% block content %}
-    <h1>Welcome to your achievments page, Player!</h1>
+<div class="about-container">
+
+    <img src="{% static 'main_app/assets/images/taskflow-logo-transparent2.png' %}" alt="TaskFlow Logo" class="logo" style="width:850px">
+
+    <h1>Achievments Coming Soon To Task Flow!</h1>
+    <h2>
+        Stay Tunded, Player!
+    </h2>
+
+</div>
 {% endblock content %}
