@@ -39,32 +39,6 @@ Deployment: **Render**
 
 Authentication: **Django Authentication**
 
-## Installation (Local) ##
-1. Clone the repository
-git clone https://github.com/your-username/taskflow.git
-cd taskflow
-
-2. Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-
-3. Install dependencies
-pip install -r requirements.txt
-
-4. Run migrations
-python manage.py makemigrations
-python manage.py migrate
-
-5. Create a superuser (optional)
-python manage.py createsuperuser
-
-6. Start the development server
-python manage.py runserver
-
-7. Open the app
-http://127.0.0.1:8000/
-
-
 ## Future Enhancements ##
 
  - Add badges and achievements  system
