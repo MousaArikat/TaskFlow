@@ -8,6 +8,14 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['task_id','title','description','difficulty', 'deadline', 'quest']
+        error_messages = {
+            'title':{
+                'max_length': 'Please keep the length less than 50 characters'
+            },
+            'deadline': {
+                'invalid': "Please enter a valid date in the format MM/DD/YYYY.",
+            }
+        }
 
 
 class QuestForm(forms.ModelForm):

@@ -7,7 +7,9 @@
 {% block content %}
 <div class="quest-header">
   <h1>Welcome, Player - This is your <span style="color:#6c63ff">{{quest.title}}</span> Quest</h1>
+  <h2>Category : {{quest.category}} </h2>
   <p>{{quest.description}}</p>
+  
 
   <div class="quest-actions">
     <a href="{% url 'update_quest' quest.quest_id %}" class="quest-action-btn update">Update Quest</a>
