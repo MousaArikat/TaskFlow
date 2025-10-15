@@ -19,30 +19,30 @@ def dashboard_view(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
     xp = profile.total_xp
 
-    if xp>15000:
+    if xp>=15000:
         rank = Rank.objects.get(title = "S-RANK MASTER: THE SHADOW MONARCH")
         current_min = 15000
         next_min = None
-    elif xp > 8000:
+    elif xp >= 8000:
         rank = Rank.objects.get(title = "A-RANK ELITE: ELITE HUNTER")
         current_min = 8000
         next_min = 15000
-    elif xp > 4000:
+    elif xp >= 4000:
         rank = Rank.objects.get(title = "B-RANK EXPERT - THE PHANTOM HUNTER")
         current_min = 4000
         next_min = 8000
-    elif xp > 2000:
+    elif xp >= 2000:
         rank = Rank.objects.get(title = "C-RANK ADEPT: APEX HUNTER")
         current_min = 2000
         next_min = 4000
-    elif xp > 500:
+    elif xp >= 500:
         rank = Rank.objects.get(title = "D-RANK NOVICE: MANA HUNTER")
         current_min = 500
         next_min = 2000
     else:
         rank = Rank.objects.get(title = "E-RANK ROOKIE: AWAKENED HUNTER")
         current_min = 0
-        next_min = 2000
+        next_min = 500
 
     if profile.rank != rank:
         profile.rank = rank
@@ -68,6 +68,7 @@ def dashboard_view(request):
             "title" : quest.title,
             "progress": progress,
         })
+    print("Rank progress:", progress)
 
     profile = UserProfile.objects.get(user=request.user)
     return render(request, 'main_app/dashboard.html', {'active_quests' : quests_progress, 
@@ -246,3 +247,12 @@ def delete_quest(request, quest_id):
         return redirect('quest_list')
     else:
         return redirect('view_quest', quest_id=quest_id)
+
+
+@login_required
+def user_profile(request):
+    profile = UserProfile.objects.get(user=request.user)
+    return render(request, "main_app/user-profile.html", {
+        "user": request.user,
+        "profile": profile
+    })

@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout/', v.LogoutView.as_view(next_page = 'login'), name = "logout"),
     path('', views.dashboard_view ,name = 'homepage'),
     path('achievments/', views.view_achievments, name = "view_achievments"),
+    path('profile/', views.user_profile, name = "user_profile"),
     path('about/', views.about_page, name = 'about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name = 'signup'),
