@@ -13,8 +13,6 @@
     .about-container img.logo {
         width: 220px;
         margin-bottom: 1rem;
-        /* filter: drop-shadow(0 0 15px rgba(108, 99, 255, 0.7)); */
-        animation: float 3s ease-in-out infinite;
         z-index: 1;
 
 

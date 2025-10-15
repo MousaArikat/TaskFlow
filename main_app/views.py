@@ -49,9 +49,9 @@ def dashboard_view(request):
         profile.save()
     
     if next_min:
-        progress = ((xp-current_min)/ (next_min - current_min) * 100)
+        rank_progress = ((xp-current_min)/ (next_min - current_min) * 100)
     else:
-        progress = 100
+        rank_progress = 100
 
     active_quests = Quest.objects.filter(user=request.user)[:3]
     quests_progress = []
@@ -61,19 +61,18 @@ def dashboard_view(request):
 
         progress = 0
         if total_tasks > 0:
-            progress = round((completed_tasks / total_tasks) * 100)
+            quest_progress = round((completed_tasks / total_tasks) * 100)
         
         quests_progress.append({
             "id" : quest.quest_id,
             "title" : quest.title,
-            "progress": progress,
+            "progress": quest_progress,
         })
-    print("Rank progress:", progress)
 
     profile = UserProfile.objects.get(user=request.user)
     return render(request, 'main_app/dashboard.html', {'active_quests' : quests_progress, 
                                                        'profile' : profile, 
-                                                       'rank_progress' : round(progress,1), 
+                                                       'rank_progress' : round(rank_progress,1), 
                                                        'current_min' : current_min, 
                                                        'next_min' : next_min})
     
@@ -250,9 +249,41 @@ def delete_quest(request, quest_id):
 
 
 @login_required
+@login_required
 def user_profile(request):
     profile = UserProfile.objects.get(user=request.user)
+    xp = profile.total_xp
+
+    # Determine current and next rank thresholds
+    if xp >= 15000:
+        current_min = 15000
+        next_min = None
+    elif xp >= 8000:
+        current_min = 8000
+        next_min = 15000
+    elif xp >= 4000:
+        current_min = 4000
+        next_min = 8000
+    elif xp >= 2000:
+        current_min = 2000
+        next_min = 4000
+    elif xp >= 500:
+        current_min = 500
+        next_min = 2000
+    else:
+        current_min = 0
+        next_min = 500
+
+    if next_min:
+        rank_progress = ((xp - current_min) / (next_min - current_min)) * 100
+    else:
+        rank_progress = 100
+
     return render(request, "main_app/user-profile.html", {
         "user": request.user,
-        "profile": profile
+        "profile": profile,
+        "rank_progress": round(rank_progress, 1),
+        "current_min": current_min,
+        "next_min": next_min
     })
+
