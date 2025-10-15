@@ -20,7 +20,7 @@
 
 ## Rank System ##
 Rank Title	                  
-- **E-RANK ROOKIE: AWAKENED HUNTER	**       0 – 499
+- **E-RANK ROOKIE: AWAKENED HUNTER**       0 – 499
 - **D-RANK NOVICE: MANA HUNTER**	     500 – 1999
 - **C-RANK ADEPT: APEX HUNTER**	      2000 – 3999
 - **B-RANK EXPERT: THE PHANTOM HUNTER**	       4000 – 7999
