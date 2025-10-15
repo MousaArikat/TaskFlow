@@ -2,51 +2,158 @@
 {% load static %}
 
 {% block head %}
-    <script>
-        .ranks-section{
-            margin-top:3rem;
-            text-align: left
+<style>
+    .about-container {
+        max-width: 900px;
+        margin: 3rem auto;
+        text-align: center;
+        padding: 2rem;
+        color: #eee;
+        background: linear-gradient(135deg, #23243a, #2d2f54);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.7s ease-in-out;
+    }
+
+    .about-container img.logo {
+        width: 220px;
+        margin-bottom: 1rem;
+        filter: drop-shadow(0 0 15px rgba(108, 99, 255, 0.7));
+        animation: float 3s ease-in-out infinite;
+    }
+
+
+    .about-container h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #6c63ff, #38e0e7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .about-container p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #ccc;
+        line-height: 1.7;
+    }
+
+    .ranks-section {
+        margin-top: 3rem;
+        text-align: left
+    }
+
+    .ranks-section h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: #38e0e7
+    }
+
+    .rank-card {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1rem;
+        margin-bottom: 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(108, 99, 255, 0.3);
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .rank-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .rank-card img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .rank-info h3 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: #fff;
+    }
+
+    .rank-info p {
+        margin: 0.3rem 0 0;
+        font-size: 1rem;
+        color: #bbb;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        .ranks-section h2{
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            color: #38e0e7
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        .rank-card{
-            display:flex;
-            align-items: center;
-            gap: 1.2rem;
-            padding: 1rem;
-            margin-bottom: 1.2rem;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(108,99,255,0.3);
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-    </script>
+    }
+</style>
 
 {% endblock head %}
 
 {% block content %}
+<div class="about-container">
+
+    <img src="{% static 'main_app/assets/images/taskflow-logo-transparent2.png' %}" alt="TaskFlow Logo" class="logo">
+
     <h1>Welcome to TaskFlow!</h1>
     <p>
-        TaskFlow is a gamified productivity platform that transforms your daily tasks into an adventure. 
-        Every quest you complete, every task you finish, and every streak you maintain brings you closer 
-        to mastering the flow state. Earn XP, level up, unlock achievements, and climb through the ranks 
+        TaskFlow is a gamified productivity platform that transforms your daily tasks into an adventure.
+        Every quest you complete, every task you finish, and every streak you maintain brings you closer
+        to mastering the flow state. Earn XP, level up, unlock achievements, and climb through the ranks
         to become the ultimate TaskFlow champion.
     </p>
 
-    <div class = "ranks-section">
+    <div class="ranks-section">
         <h2>The Rank Path!</h2>
-        <div class = "rank-card">
+        <div class="rank-card">
             <img src="{% static 'main_app/assets/images/ranks/e-rank.png'%}" alt="E-Rank">
+            <div class="rank-info">
+                <h3>E-RANK ROOKIE: AWAKENED HUNTER</h3>
+                <p>The journey begins here. Every legend starts as a Rookie. Complete tasks to prove your worth and
+                    rise.</p>
+            </div>
+        </div>
+
+        <div class="rank-card">
+            <img src="{% static 'main_app/assets/images/ranks/d-rank.png' %}" alt="D-Rank">
+            <div class="rank-info">
+                <h3>D-RANK NOVICE: MANA HUNTER</h3>
+                <p>You’ve shown promise and begun to master consistency. Keep completing tasks to channel your
+                    potential, and reach your ultimate flow.</p>
+            </div>
+        </div>
+
+        <div class="rank-card">
+            <img src="{% static 'main_app/assets/images/ranks/c-rank.png' %}" alt="C-Rank">
+            <div class="rank-info">
+                <h3>C-RANK ADEPT: APEX HUNTER</h3>
+                <p>Now a serious challenger, your focus sharpens. Every completed task brings you closer to mastery.</p>
+            </div>
         </div>
 
 
-
-
     </div>
+</div>
+
 {% endblock content %}o
