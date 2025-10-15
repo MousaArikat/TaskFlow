@@ -2,22 +2,28 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{%static 'main_app/css/user.css' %}">
+    <style>
+        <style>
+
+</style>
+
 {% endblock head %}
 
 {% block content %}
     <div class = "page-header"></div>
-    <h1>Join the world of FlowState, Player!</h1>
-
-
 {% if error_message %}
     <p class = "red-text"> {{error_message}} </p>
 {% endif %}
-<form method = "post" class= "form-container" autocomplete = "off"> 
+<form method = "post" class= "signup-form" autocomplete = "off"> 
+<img src="{% static 'main_app/assets/images/taskflow-logo-transparent2.png' %}" alt="TaskFlow Logo" class="login-logo">
+    <h1>Start Your Journey to the Flow State now!</h1>
     {% csrf_token %}
     <table>
-        {{form.as_table}}
+        {{form.as_p}}
     </table>
-    <button type = "submit" class = "btn submit"> Join the quest! </button>
+    <button type = "submit" class = "btn-submit"> Join the Quest! </button>
+
+    <p class = "login-link">Already a Player?<a href= "{% url 'homepage'%}">Login Here!</a></p>
 </form>
 
-{% endblock %}
+{% endblock content%}
