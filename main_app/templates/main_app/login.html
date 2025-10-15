@@ -2,15 +2,17 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{%static 'main_app/css/user.css' %}">
-
+    
 {% endblock head %}
 
 {% block content %}
     <form method = "post" class = "login-form">
+        <img src="{% static 'main_app/assets/images/taskflow-logo-transparent2.png' %}" alt="Logo Icon" class="login-logo">
+
         <h1>
             Welcome Back, Player...
         </h1>
-        <h1>Ready to continue your path to the flow state?</h1>
+        <h2>Ready to continue your path to the flow state?</h2>
 
         {% csrf_token %}
 
