@@ -4,9 +4,21 @@
 {% block content %}
 
 <div class="dashboard-container">
-
   <section class="profile-card">
-    <img src="{{profile.rank.badge_icon.url}}" alt="Rank Badge" class="rank-icon">
+    {% if profile.rank.title == "S-RANK MASTER: THE SHADOW MONARCH" %}
+      <img src="{% static 'main_app/assets/images/ranks/s-rank.png' %}" alt="S-Rank" class = "rank-icon">
+    {% elif profile.rank.title == "A-RANK ELITE: ELITE HUNTER" %}
+          <img src="{% static 'main_app/assets/images/ranks/a-rank.png' %}" alt="A-Rank" class = "rank-icon">
+    {% elif profile.rank.title == "B-RANK EXPERT: THE PHANTOM HUNTER" %}
+            <img src="{% static 'main_app/assets/images/ranks/b-rank.png' %}" alt="B-Rank" class = "rank-icon">
+    {% elif profile.rank.title == "C-RANK ADEPT: APEX HUNTER" %}
+            <img src="{% static 'main_app/assets/images/ranks/c-rank.png' %}" alt="C-Rank" class = "rank-icon">
+    {% elif profile.rank.title == "D-RANK NOVICE: MANA HUNTER" %}
+            <img src="{% static 'main_app/assets/images/ranks/d-rank.png' %}" alt="D-Rank" class = "rank-icon">
+    {% elif profile.rank.title == "E-RANK ROOKIE: AWAKENED HUNTER" %}
+            <img src="{% static 'main_app/assets/images/ranks/e-rank.png' %}" alt="E-Rank" class = "rank-icon">
+    {% endif %}
+
     <h2 class="rank-title">{{profile.rank.title}}</h2>
     {% if next_min %}
         <p class="xp">XP: {{profile.total_xp}} / {{next_min}}</p>
