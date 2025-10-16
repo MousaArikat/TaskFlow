@@ -1,3 +1,5 @@
+![taskflow-logo-transparent2](https://git.generalassemb.ly/mousaaricat/FlowQuest-Capstone/assets/55686/d941b5a8-463d-4d8d-8f13-e8c7ec436910)
+
 # TaskFlow #
 
 **TaskFlow** is a gamified productivity web application inspired by the famous anime and manhwa **Solo Leveling**, it is built with Django. It transforms daily tasks and projects into quests, allowing users to earn XP, achieve ranks, and unlock achievements as they complete goals. Designed to improve motivation and consistency, TaskFlow blends productivity with a sense of progression similar to games.
