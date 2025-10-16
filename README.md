@@ -1,4 +1,4 @@
-![taskflow-logo-transparent2](https://git.generalassemb.ly/mousaaricat/FlowQuest-Capstone/assets/55686/d941b5a8-463d-4d8d-8f13-e8c7ec436910)
+<img width="1024" height="346" alt="taskflow-logo-transparent2" src="https://github.com/user-attachments/assets/02b5ee55-e990-420a-9c75-e25b1533e92b" />
 
 # TaskFlow #
 
