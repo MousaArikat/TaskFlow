@@ -6,17 +6,17 @@
 
 - User Authentication: Sign up, log in, and manage profiles securely.
 
-- Quests & Tasks – Create quests (projects) and add multiple tasks under each quest.
+- Quests & Tasks: Create quests (projects) and add multiple tasks under each quest.
 
-- Gamification System – Earn XP for completing tasks and progress through ranks, E to S.
+- Gamification System: Earn XP for completing tasks and progress through ranks, E to S.
 
-- Rank Progression – Dynamic rank updates based on total XP.
+- Rank Progression: Dynamic rank updates based on total XP.
 
-- Achievements (Coming Soon) – Unlock milestones and badges as you progress.
+- Achievements (Coming Soon): Unlock milestones and badges as you progress.
 
-- Responsive Dashboard – View quests, progress bars, XP, and ranks all in one place.
+- Responsive Dashboard: View quests, progress bars, XP, and ranks all in one place.
 
-- Profile Page – Personalized profile with XP tracking and rank display.
+- Profile Page: Personalized profile with XP tracking and rank display.
 
 ## Rank System ##
 Rank Title	                  
@@ -26,6 +26,8 @@ Rank Title
 - **B-RANK EXPERT: THE PHANTOM HUNTER**	       4000 – 7999
 - **A-RANK ELITE: ELITE HUNTER**	8000 – 14999
 - **S-RANK MASTER: THE SHADOW MONARCH**	      15000+
+## ERD ##
+![image](https://git.generalassemb.ly/mousaaricat/FlowQuest-Capstone/assets/55686/d9d8b0b2-defb-4290-b4cc-8d3b446619cf)
 
 ## The Stack ##
 
