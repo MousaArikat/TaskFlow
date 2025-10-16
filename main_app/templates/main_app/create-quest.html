@@ -104,7 +104,7 @@
 <div class="quest-form-container">
   <h1>Create a New Quest</h1>
 
-  <form method="post">
+  <form method="post" autcomplete = "off">
     {% csrf_token %}
     {% for field in form %}
       <div class="form-field">
