@@ -55,4 +55,87 @@ Authentication: **Django Authentication**
 
  - Enable progress analytics and reports
 
+## Setup & Installation ##
+### 1. Clone the Repository ###
+```bash
+git clone https://github.com/<your-username>/TaskFlow.git
+cd TaskFlow
+```
+
+### 2. Create and Activate a Virtual Environment ### 
+```bash
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
+```
+
+### 3. Install Dependencies ###
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Setup Environment Variables ###
+```bash
+cp .env.example .env
+```
+### 5. Apply Migrations ###
+```bash
+python manage.py migrate
+```
+
+### 6. Run the Development Server ###
+```bash
+python manage.py runserver
+```
+
+Now open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser to view the app.
+
+## Entry Point ##
+The main entry point for the project is:
+```bash
+FlowQuest/manage.py
+```
+
+## Environment Variables ##
+You’ll need a ```bash .env ``` file with these variables for local development:
+```bash
+# Django
+SECRET_KEY=your_django_secret_key_here
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+
+# Database (Local)
+DB_NAME=taskflow_db
+DB_PASSWORD=your_postgres_password
+DB_HOST=localhost
+DB_PORT=5432
+
+# For Production (optional)
+DATABASE_URL=your_render_database_url
+```
+
+
+## Database ##
+
+- Default: PostgreSQL
+- Local config: loaded from .env
+- Production config: automatically uses DATABASE_URL if set
+
+
+## Special Requirements ##
+- Python 3.9+
+- PostgreSQL installed locally
+- Django 5.x
+- dj-database-url and python-dotenv must be installed
+
+
+## Contributing ##
+Contributions are welcome!
+Before submitting a pull request:
+
+1- Fork the repository
+2- Create a new branch
+3- Commit your changes with clear messages
+4- Open a pull request
+
 ### Note: Some of the css animations and design were taken from the open source css website: https://uiverse.io/ ###
