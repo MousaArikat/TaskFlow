@@ -133,9 +133,9 @@ DATABASE_URL=your_render_database_url
 Contributions are welcome!
 Before submitting a pull request:
 
-1- Fork the repository
-2- Create a new branch
-3- Commit your changes with clear messages
-4- Open a pull request
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes with clear messages
+4. Open a pull request
 
 ### Note: Some of the css animations and design were taken from the open source css website: https://uiverse.io/ ###
